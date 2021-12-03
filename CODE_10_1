@@ -1,0 +1,250 @@
+#Nathan Yoon
+#Assignment 10.1
+# X========================================================================X
+# X You have found Nathan's Assignment 10.1, which consists of a virtual   X
+# X deli in which you, the customer, are able to choose your ingredients   X
+# X + use various functions, as demonstrated in the 'main' section. Enjoy! X
+# X                              -Menu-                                    X
+# X                Meats: 'Beef' 'Chicken' or 'Tuna'                       X
+# X              Veggies: 'Tomato' 'Lettuce' or 'Onion'                    X
+# X                 Bread: 'Wheat' 'Rye' or 'White'                        X
+# X========================================================================X
+
+#import webbroswer to be used in later functions
+import webbrowser
+import turtle
+#create class
+class Sandwich:
+   #set sandwich as class variable 
+    food_type = "Sandwich"
+   #namefirst and namelast are the two data variables
+    def __init__(self, namefirst = "", namelast = ""):
+        self.__name = namefirst
+        self.__name2 = namelast
+    #name accesses the two data variables and returns them in a string
+    def get_name(self):
+        x = self.__name
+        y = self.__name2
+        return(f"Welcome {x}! Or should I say, Professor {y}.")
+    #this function returns the food type, which is set as 'sandwich'
+    def return_food_type(self):
+        print(Sandwich.food_type)
+    #set allows user to set calorie amount, get returns the amount of calories along with string message
+    def get_calories(self):
+        return (f"Your sandwich has {self.__calories} calories in it")
+    def set_calories(self, x):
+        self.__calories = x
+    #set allows user to set weight in oz and get returns the weight along with string message
+    def get_weight_in_oz(self):
+        return (f"Your sandwich is {self.__weight} oz")
+    def set_weight_in_oz(self, x):
+        self.__weight = x
+    #this function returns the animal that the meat originates from
+    def return_animal_type(self, meat):
+        #set meat to private variable
+        self.__meat = meat
+        #if the user inputs 'beef' then return this string
+        if self.__meat == "Beef":
+            return (f"{self.__meat} comes from mammals")
+        #if the user inputs 'Turkey' then return tis one
+        elif self.__meat == "Turkey":
+            return (f"{self.__meat} comes from birds")
+        #if the user inputs 'Tuna' then return this one
+        elif self.__meat == "Tuna":
+            return (f"{self.__meat} comes from fish")
+        #if the user inputs antything else, return this error message
+        else:
+            return("Sorry, the deli doesn't have that one, or you forgot to capitalize your first letter.")
+    #this function provides the amount of calories per oz of the sandwich
+    def calorie_per_oz(self):
+        return (f"Your sandwich has {int(self.__calories / int(self.__weight))} calories per oz.")
+    #this function opens a wikipedia article based on whatever veggie the user chooses. it uses webbrowser to dothis
+    def get_veggie_info(self, veggie):
+        #if lettuce, open lettuce wiki
+        self.__veggie = veggie
+        if self.__veggie == "Lettuce":
+            webbrowser.open('wikipedia.org/wiki/Lettuce')
+        #if tomato, open tomato wiki
+        if self.__veggie == "Tomato":
+            webbrowser.open('wikipedia.org/wiki/Tomato')
+        #if onion, open onion wiki
+        if self.__veggie == "Onion":
+            webbrowser.open('wikipedia.org/wiki/Onion')
+        #if user inputs anyting else, return this erroe message
+        else:
+            print ("Choose a veggie we have in stock, or capitalize the first letter.")
+
+    #this function returns the price of the sandwich based on whatever ingredients the user chooses
+    def get_price_of_sandwich(self, meat, bread, veggie):
+        #set x equal to zero so it can be added on to
+        x = 0
+        #if user chooses beef add 5 to x, chicken add 4, tuna add 9. Because += is used, x can have its valued changed
+        if meat == 'Beef':
+            x += 5
+        elif meat == 'Chicken':
+            x += 4
+        elif meat == 'Tuna':
+            x += 9
+        #if the user inputs something other than whats on the menu, return error message
+        else: print("Meat out of stock.")
+        #repeat the same process but for bread
+        y = 0
+        if bread == 'Wheat':
+            y += 1.10
+        elif bread == 'Rye':
+            y += 1.34
+        elif bread == 'White':
+            y += 1.50
+        #error message
+        else: print("Looks like that bread went moldy.")
+        #repeat same process but for veggie
+        z = 0
+        if veggie == 'Tomato':
+            z += 1.30
+        elif veggie == 'Onion':
+            z += 1.20
+        elif veggie == 'Lettuce':
+            z += 1.25
+        #error message
+        else:
+            print ("The rats must have gotten to those veggies, we'll make it without them")
+        #f is all of them added
+        f = x + z + y
+        #return string message with the total of price in Usd
+        return (f"Your sandwich costs ${f:.2f}")
+    #this function writes out a message using turtle
+    def text_food(self, food):
+        #if user inputs 'beef' then it will print out the message using these characteristics
+        if food == "Beef":
+            #set font
+            font = "Times New Roman"
+            #set size
+            size = 50
+            #set style
+            style = "italic"
+            #set fonttype variable equal to previous 3 characteristics
+            fonttype = (font, size, style)
+            #set message to 'beef'
+            message = "Beef "
+            #use turtle.write to write out the message using the previusly chosen variables to change its appearance
+            turtle.write(message, font=fonttype, align='center')
+            #use turtle.exitonclick to make it so the turtle window stays open until the user clicks on it
+            turtle.exitonclick()
+        #repeat the same process for every other ingredient, but instead print out the given argument
+        if food == "Chicken":
+            #choose writing style
+            font = "Times New Roman"
+            size = 50
+            style = "italic"
+            fonttype = (font, size, style)
+            #print the message            
+            message = "Chicken "
+            turtle.write(message, font=fonttype, align='center')
+            turtle.exitonclick()
+        if food == "Tuna":
+            #choose writing style
+            font = "Times New Roman"
+            size = 50
+            style = "italic"
+            fonttype = (font, size, style)
+            #print the message            
+            message = "Tuna "
+            turtle.write(message, font=fonttype, align='center')
+            turtle.exitonclick()
+        if food == "White":
+           #choose writing style
+            font = "Times New Roman"
+            size = 50
+            style = "italic"
+            fonttype = (font, size, style)
+             #print the message           
+            message = "White "
+            turtle.write(message, font=fonttype, align='center')
+            turtle.exitonclick()
+        if food == "Rye":
+            #choose writing style
+            font = "Times New Roman"
+            size = 50
+            style = "italic"
+            fonttype = (font, size, style)
+            #print the message
+            message = "Rye "
+            turtle.write(message, font=fonttype, align='center')
+            turtle.exitonclick()
+        if food == "Wheat":
+            #choose writing style
+            font = "Times New Roman"
+            size = 50
+            style = "italic"
+            fonttype = (font, size, style)
+            #print the message           
+            message = "Wheat "
+            turtle.write(message, font=fonttype, align='center')
+            turtle.exitonclick()
+        if food == "Onion":
+            #choose writing style
+            font = "Times New Roman"
+            size = 50
+            style = "italic"
+            fonttype = (font, size, style)
+             #print the message           
+            message = "Onion "
+            turtle.write(message, font=fonttype, align='center')
+            turtle.exitonclick()
+        if food == "Tomato":
+            #choose writing style
+            font = "Times New Roman"
+            size = 50
+            style = "italic"
+            fonttype = (font, size, style)
+            #print the message           
+            message = "Tomato "
+            turtle.write(message, font=fonttype, align='center')
+            turtle.exitonclick()
+        if food == "Lettuce":
+            #choose writing style
+            font = "Times New Roman"
+            size = 50
+            style = "italic"
+            fonttype = (font, size, style)
+            #print the message
+            message = "Lettuce "
+            turtle.write(message, font=fonttype, align='center')
+            turtle.exitonclick()
+
+
+#demo program
+def main():
+    # a is set to the class name so that i dont have to write out Sandwich every time
+    a = Sandwich()
+    meat = #should be 'Beef', 'Chicken', or 'Tuna'
+    bread = #should be 'Rye', 'White', or 'Wheat'
+    veggie = #should be 'Lettuce', "Tomato", or 'Onion'
+    cal_amount = #Should be the users desired amount of calories to be used in calorie/oz calculator
+    weight = #should be the users desired weight in oz for the calorie/oz calculator
+    #give the __init__ function two inputs, first and last name
+    name = Sandwich("Your first name here", "Your last name here")
+    #print the result of get_date using first and last name as arguments
+    print (name.get_name())
+    #set the calorie amount to 500
+    a.set_calories(cal_amount)
+    #print the amount of calories we set, which should result in 500 calories
+    print(a.get_calories())
+    #set the weight to 20 using the function
+    a.set_weight_in_oz(weight)
+    #print the weigh we chose, which should result in 20 oz
+    print(a.get_weight_in_oz())
+    #this function prints the calories per oz using the previous inputs and dividing. should result in 25 ca/0z
+    print(a.calorie_per_oz())
+    #this function prints the type of animal that the inputted meat comes from. tuna should result in fish
+    print(a.return_animal_type(meat))
+    #this function opens a wikipedia article based on whatever veggie is chosen
+    a.get_veggie_info(veggie)
+    #this function prints the price of the sandwich based on the user input, Beef Rye and Onion should reslut in $7.54
+    print(a.get_price_of_sandwich(meat, bread, veggie))
+    #this function uses turtle to printout whatever ingredient is chosen
+    a.text_food(veggie)
+    #this returns the type of food, which is set as a class variable. should return 'Sandwich' 
+    return a.return_food_type()
+if __name__ == "__main__":
+    main()
